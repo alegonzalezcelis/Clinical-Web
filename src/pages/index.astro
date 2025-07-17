@@ -1,16 +1,101 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import ServiceCard from "../components/ServiceCard.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="KinesioVital - Bienvenido">
+  <Header />
+  <main class="container mx-auto pt-20 pb-10 px-4">
+    <section
+      id="inicio"
+      class="text-center mb-16"
+    >
+      <h1 class="text-4xl font-bold text-ColorTitle mb-4">
+        Bienvenido a KinesioVital 2.0
+      </h1>
+      <p class="text-lg text-ColorAqua">
+        Tu salud en manos de expertos en kinesiología y fisioterapia.
+      </p>
+    </section>
+
+    <section
+      id="beneficios"
+      class="mb-16"
+    >
+      <h2 class="text-3xl font-semibold text-ColorTitle mb-8 text-center">
+        Beneficios de Nuestros Servicios
+      </h2>
+      <ul class="list-disc list-inside text-gray-700 space-y-4">
+        <li>Mejora de la movilidad y flexibilidad.</li>
+        <li>Reducción del dolor muscular y articular.</li>
+        <li>Recuperación más rápida de lesiones.</li>
+        <li>Prevención de futuras lesiones.</li>
+      </ul>
+    </section>
+
+    <section
+      id="servicios"
+      class="mb-16"
+    >
+      <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">
+        Nuestros Servicios
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <ServiceCard
+          title="Rehabilitación Física"
+          description="Terapias personalizadas para tu recuperación."
+          icon="💪"
+        />
+        <ServiceCard
+          title="Masaje Terapéutico"
+          description="Alinea tu cuerpo y mente con nuestras técnicas."
+          icon="👐"
+        />
+        <ServiceCard
+          title="Consulta Especializada"
+          description="Evaluación detallada por kinesiólogos certificados."
+          icon="🩺"
+        />
+        <ServiceCard
+          title="Ejercicios Terapéuticos"
+          description="Programas de ejercicios adaptados a tus necesidades."
+          icon="🏋️"
+        />
+
+        <ServiceCard
+          title="Terapia Manual"
+          description="Técnicas manuales para aliviar tensiones."
+          icon="🤲"
+        />
+      </div>
+    </section>
+
+    <section
+      id="nosotros"
+      class="mb-16 text-center"
+    >
+      <h2 class="text-3xl font-semibold text-gray-800 mb-4">Sobre Nosotros</h2>
+      <p class="text-gray-700 leading-relaxed">
+        Somos un equipo comprometido con brindar la mejor atención a nuestro
+        pacientes, enfocándonos en técnicas modernas y efectivas de
+        kinesiología.
+      </p>
+    </section>
+
+    <section
+      id="contacto"
+      class="text-center"
+    >
+      <h2 class="text-3xl font-semibold text-gray-800 mb-4">Contáctanos</h2>
+      <p class="text-gray-700 mb-4">
+        ¿Tienes preguntas o necesitas más información? ¡Estamos aquí para
+        ayudarte!
+      </p>
+      <button
+        class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors"
+        >Enviar Mensaje</button
+      >
+    </section>
+  </main>
+</Layout>

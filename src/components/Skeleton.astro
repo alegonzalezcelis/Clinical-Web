@@ -1,0 +1,29 @@
+---
+export interface Props {
+  className?: string;
+  width?: string;
+  height?: string;
+  rounded?: boolean;
+}
+
+const { className = '', width = 'w-full', height = 'h-4', rounded = false } = Astro.props;
+---
+
+<div 
+  class={`bg-gray-200 animate-pulse ${width} ${height} ${rounded ? 'rounded-full' : 'rounded'} ${className}`}
+></div>
+
+<style>
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>
