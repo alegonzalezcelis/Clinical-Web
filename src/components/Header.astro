@@ -28,6 +28,71 @@
       visibility: visible;
       transform: scaleX(1);
     }
+
+    /* Estilos para la animación del ícono */
+    .menu-icon {
+      width: 24px;
+      height: 24px;
+      position: relative;
+      transform: rotate(0deg);
+      transition: 0.5s ease-in-out;
+      cursor: pointer;
+    }
+
+    .menu-icon span {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: #374151;
+      border-radius: 9px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: 0.25s ease-in-out;
+    }
+
+    .menu-icon span:nth-child(1) {
+      top: 0px;
+    }
+
+    .menu-icon span:nth-child(2) {
+      top: 10px;
+    }
+
+    .menu-icon span:nth-child(3) {
+      top: 20px;
+    }
+
+    .menu-icon.open span:nth-child(1) {
+      top: 10px;
+      transform: rotate(135deg);
+    }
+
+    .menu-icon.open span:nth-child(2) {
+      opacity: 0;
+      left: -60px;
+    }
+
+    .menu-icon.open span:nth-child(3) {
+      top: 10px;
+      transform: rotate(-135deg);
+    }
+
+    /* Estilos para la animación del menú móvil */
+    .mobile-menu {
+      transform-origin: top;
+      transform: scaleY(0);
+      opacity: 0;
+      transition:
+        transform 0.3s ease-in-out,
+        opacity 0.3s ease-in-out;
+    }
+
+    .mobile-menu.open {
+      transform: scaleY(1);
+      opacity: 1;
+    }
   </style>
 
   <nav class="container mx-auto px-4 py-4">
@@ -76,25 +141,17 @@
         class="md:hidden p-2"
         id="mobile-menu-toggle"
       >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          ></path>
-        </svg>
+        <div class="menu-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </button>
     </div>
 
-    <!-- Menú móvil (sin efectos hover) -->
+    <!-- Menú móvil -->
     <div
-      class="md:hidden mt-4 pb-4 hidden"
+      class="md:hidden mt-4 pb-4 mobile-menu"
       id="mobile-menu"
     >
       <div class="space-y-2">
@@ -131,8 +188,27 @@
 <script>
   const toggleButton = document.getElementById("mobile-menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.querySelector(".menu-icon");
+
+  // Asegurarnos que el menú está oculto inicialmente
+  if (mobileMenu) {
+    mobileMenu.classList.add("hidden");
+  }
 
   toggleButton?.addEventListener("click", () => {
+    // Primero removemos/agregamos hidden para controlar la visibilidad
     mobileMenu?.classList.toggle("hidden");
+
+    // Después de un pequeño delay, agregamos/removemos la clase open
+    // para permitir que la animación funcione
+    setTimeout(() => {
+      if (!mobileMenu?.classList.contains("hidden")) {
+        mobileMenu?.classList.add("open");
+        menuIcon?.classList.add("open");
+      } else {
+        mobileMenu?.classList.remove("open");
+        menuIcon?.classList.remove("open");
+      }
+    }, 10);
   });
 </script>
