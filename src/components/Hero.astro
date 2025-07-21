@@ -2,44 +2,117 @@
     id="inicio"
     class="mb-16 text-center md:text-left md:mb-0 bg-ColorBackground py-10"
 >
-    <div class="container mx-auto px-4 animate-on-scroll">
-        <h1 class="text-3xl font-bold text-ColorTitle mb-4">
-            Tu recuperación
-            <span class="text-4xl after:block after:content-[''] text-ColorAqua"
-                >nos importa</span
+    <div
+        class="container mx-auto px-10 md:grid md:grid-cols-2 md:gap-8 items-center"
+    >
+        <div class="animate-on-scroll">
+            <h1 class="text-3xl font-bold text-ColorTitle mb-4">
+                Tu recuperación
+                <span
+                    class="text-4xl after:block after:content-[''] text-ColorAqua"
+                    >nos importa</span
+                >
+                Kinesiología experta para moverte sin dolor.
+            </h1>
+            <p
+                class="text-ColorText text-lg text-justify md:text-left font-light"
             >
-            Kinesiología experta para moverte sin dolor.
-        </h1>
-        <p class="text-ColorText text-lg text-justify md:text-left font-light">
-            Centro de Kinesiología especializado en rehabilitación y terapia
-            física. Recupera tu movilidad y mejora tu calidad de vida con
-            tratamientos personalizados y efectivos.
-        </p>
-        <div class="relative my-8 w-full">
+                Centro de Kinesiología especializado en rehabilitación y terapia
+                física. Recupera tu movilidad y mejora tu calidad de vida con
+                tratamientos personalizados y efectivos.
+            </p>
+            <div class="relative mt-8 w-full">
+                <div
+                    class="mx-auto h-px w-100 bg-gradient-to-r from-transparent via-ColorAqua to-transparent"
+                >
+                </div>
+            </div>
+            <div class="flex justify-center gap-x-6 md:gap-x-14 my-5">
+                <div class="text-center md:text-left">
+                    <h3 class="text-ColorAqua font-semibold text-xl">
+                        +30.000
+                    </h3>
+                    <p class="font-light text-sm">Sesiones realizadas</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-ColorAqua font-semibold text-xl">+500</h3>
+                    <p class="font-light text-sm">Pacientes recuperados</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-ColorAqua font-semibold text-xl">+10</h3>
+                    <p class="font-light text-sm">Años de experiencia</p>
+                </div>
+            </div>
+            <div class="relative mb-8 w-full">
+                <div
+                    class="mx-auto h-px w-100 bg-gradient-to-r from-transparent via-ColorAqua to-transparent"
+                >
+                </div>
+            </div>
+
+            <!-- Botones Call to Action -->
             <div
-                class="mx-auto h-px w-100 bg-gradient-to-r from-transparent via-ColorAqua to-transparent"
+                class="flex flex-row justify-center md:justify-start mt-8 gap-4"
             >
+                <a
+                    href="https://agendapro.com/mp/cl/entrenamiento-melipilla"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block bg-ColorAqua text-white px-6 py-2.5 rounded-full hover:bg-transparent hover:border-2 hover:border-ColorAqua hover:text-ColorAqua transition-all text-center min-w-[140px]"
+                >
+                    Reservar Cita
+                </a>
+                <a
+                    href="#contacto"
+                    class="inline-block border-2 border-ColorAqua text-ColorAqua px-6 py-2.5 rounded-full hover:bg-ColorAqua hover:text-white transition-all text-center min-w-[140px]"
+                >
+                    Contactar
+                </a>
             </div>
         </div>
-        <div class="flex justify-center gap-x-6 md:gap-x-14">
-            <div class="text-center md:text-left">
-                <h3 class="text-ColorAqua font-semibold text-xl">+30.000</h3>
-                <p class="font-light text-sm">Sesiones realizadas</p>
-            </div>
-            <div class="text-center md:text-left">
-                <h3 class="text-ColorAqua font-semibold text-xl">+500</h3>
-                <p class="font-light text-sm">Pacientes recuperados</p>
-            </div>
-            <div class="text-center md:text-left">
-                <h3 class="text-ColorAqua font-semibold text-xl">+10</h3>
-                <p class="font-light text-sm">Años de experiencia</p>
-            </div>
-        </div>
-        <div class="relative my-8 w-full">
-            <div
-                class="mx-auto h-px w-100 bg-gradient-to-r from-transparent via-ColorAqua to-transparent"
-            >
-            </div>
+
+        <!-- Imagen Hero -->
+        <div class="hidden md:block animate-on-scroll">
+            <img
+                src="/images/hero-kinesiologia.jpg"
+                alt="Clínica de kinesiología moderna con equipamiento especializado"
+                class="w-full h-auto rounded-2xl shadow-lg object-cover"
+                style="aspect-ratio: 4/3;"
+            />
         </div>
     </div>
 </section>
+
+<style>
+    .btn-gradient {
+        background-size: 200% auto;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background-image: linear-gradient(
+            to right,
+            var(--color-aqua) 0%,
+            var(--color-aqua-hover) 51%,
+            var(--color-aqua) 100%
+        );
+    }
+
+    .btn-primary:hover {
+        background-position: right center;
+    }
+
+    .btn-secondary {
+        background-image: linear-gradient(
+            to right,
+            transparent 0%,
+            var(--color-aqua) 51%,
+            transparent 100%
+        );
+    }
+
+    .btn-secondary:hover {
+        background-position: right center;
+        border-color: transparent;
+    }
+</style>
