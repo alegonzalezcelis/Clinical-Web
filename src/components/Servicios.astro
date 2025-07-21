@@ -1,0 +1,40 @@
+---
+import ServiceCard from "../components/ServiceCard.astro";
+---
+
+<section
+    id="servicios"
+    class="mb-16"
+>
+    <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">
+        Nuestros Servicios
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <ServiceCard
+            title="Rehabilitación Física"
+            description="Terapias personalizadas para tu recuperación."
+            icon="💪"
+        />
+        <ServiceCard
+            title="Masaje Terapéutico"
+            description="Alinea tu cuerpo y mente con nuestras técnicas."
+            icon="👐"
+        />
+        <ServiceCard
+            title="Consulta Especializada"
+            description="Evaluación detallada por kinesiólogos certificados."
+            icon="🩺"
+        />
+        <ServiceCard
+            title="Ejercicios Terapéuticos"
+            description="Programas de ejercicios adaptados a tus necesidades."
+            icon="🏋️"
+        />
+
+        <ServiceCard
+            title="Terapia Manual"
+            description="Técnicas manuales para aliviar tensiones."
+            icon="🤲"
+        />
+    </div>
+</section>

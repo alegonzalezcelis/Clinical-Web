@@ -1,52 +1,219 @@
 ---
+
 ---
 
-<header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md z-50 shadow-sm">
-  <nav class="container mx-auto px-4 py-4">
+<header
+  class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md z-50 shadow-sm"
+>
+  <style>
+    .menu-link {
+      position: relative;
+      font-weight: 500;
+    }
+
+    .menu-link::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--color-aqua, #4fd1c5);
+      visibility: hidden;
+      transform: scaleX(0);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .menu-link:hover::before {
+      visibility: visible;
+      transform: scaleX(1);
+    }
+
+    /* Estilos para la animación del ícono */
+    .menu-icon {
+      width: 24px;
+      height: 24px;
+      position: relative;
+      transform: rotate(0deg);
+      transition: 0.5s ease-in-out;
+      cursor: pointer;
+    }
+
+    .menu-icon span {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: #374151;
+      border-radius: 9px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: 0.25s ease-in-out;
+    }
+
+    .menu-icon span:nth-child(1) {
+      top: 0px;
+    }
+
+    .menu-icon span:nth-child(2) {
+      top: 10px;
+    }
+
+    .menu-icon span:nth-child(3) {
+      top: 20px;
+    }
+
+    .menu-icon.open span:nth-child(1) {
+      top: 10px;
+      transform: rotate(135deg);
+    }
+
+    .menu-icon.open span:nth-child(2) {
+      opacity: 0;
+      left: -60px;
+    }
+
+    .menu-icon.open span:nth-child(3) {
+      top: 10px;
+      transform: rotate(-135deg);
+    }
+
+    /* Estilos para la animación del menú móvil */
+    .mobile-menu {
+      transform-origin: top;
+      transform: scaleY(0);
+      opacity: 0;
+      transition:
+        transform 0.3s ease-in-out,
+        opacity 0.3s ease-in-out;
+    }
+
+    .mobile-menu.open {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  </style>
+
+  <nav class="container mx-auto px-10 py-4">
     <div class="flex items-center justify-between">
+      <!-- Logo -->
       <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+        <div
+          class="w-8 h-8 bg-ColorAqua rounded-lg flex items-center justify-center"
+        >
           <span class="text-white font-bold text-lg">K</span>
         </div>
         <span class="text-xl font-bold text-gray-800">KinesioVital</span>
       </div>
-      
+
+      <!-- Menú de navegación Desktop -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="#inicio" class="text-gray-700 hover:text-blue-600 transition-colors">Inicio</a>
-        <a href="#servicios" class="text-gray-700 hover:text-blue-600 transition-colors">Servicios</a>
-        <a href="#nosotros" class="text-gray-700 hover:text-blue-600 transition-colors">Nosotros</a>
-        <a href="#contacto" class="text-gray-700 hover:text-blue-600 transition-colors">Contacto</a>
-        <button class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors">
+        <a
+          href="#inicio"
+          class="menu-link text-gray-700 hover:text-ColorAqua transition-all"
+          >Inicio</a
+        >
+        <a
+          href="#servicios"
+          class="menu-link text-gray-700 hover:text-ColorAqua transition-all"
+          >Servicios</a
+        >
+        <a
+          href="#nosotros"
+          class="menu-link text-gray-700 hover:text-ColorAqua transition-all"
+          >Nosotros</a
+        >
+        <a
+          href="#contacto"
+          class="menu-link text-gray-700 hover:text-ColorAqua transition-all"
+          >Contacto</a
+        >
+        <a
+          href="https://agendapro.com/mp/cl/entrenamiento-melipilla"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-ColorAqua text-white px-6 py-2 rounded-full hover:bg-transparent border hover:border-ColorAqua hover:text-ColorAqua transition-colors"
+        >
           Reservar Cita
-        </button>
+        </a>
       </div>
-      
-      <button class="md:hidden p-2" id="mobile-menu-toggle">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
+
+      <!-- Botón de menú móvil -->
+      <button
+        class="md:hidden p-2"
+        id="mobile-menu-toggle"
+      >
+        <div class="menu-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </button>
     </div>
-    
-    <div class="md:hidden mt-4 pb-4 hidden" id="mobile-menu">
+
+    <!-- Menú móvil -->
+    <div
+      class="md:hidden mt-4 pb-4 mobile-menu"
+      id="mobile-menu"
+    >
       <div class="space-y-2">
-        <a href="#inicio" class="block py-2 text-gray-700 hover:text-blue-600 transition-colors">Inicio</a>
-        <a href="#servicios" class="block py-2 text-gray-700 hover:text-blue-600 transition-colors">Servicios</a>
-        <a href="#nosotros" class="block py-2 text-gray-700 hover:text-blue-600 transition-colors">Nosotros</a>
-        <a href="#contacto" class="block py-2 text-gray-700 hover:text-blue-600 transition-colors">Contacto</a>
-        <button class="w-full bg-blue-600 text-white py-2 rounded-full hover:bg-blue-700 transition-colors mt-4">
+        <a
+          href="#inicio"
+          class="block py-2 text-gray-700"
+          >Inicio</a
+        >
+        <a
+          href="#servicios"
+          class="block py-2 text-gray-700"
+          >Servicios</a
+        >
+        <a
+          href="#nosotros"
+          class="block py-2 text-gray-700"
+          >Nosotros</a
+        >
+        <a
+          href="#contacto"
+          class="block py-2 text-gray-700"
+          >Contacto</a
+        >
+        <a
+          href="https://agendapro.com/mp/cl/entrenamiento-melipilla"
+          target="_blank"
+          class="block w-full text-center bg-ColorAqua text-white py-3 rounded-full hover:bg-transparent hover:border-2 hover:border-ColorAqua hover:text-ColorAqua transition-colors mt-4"
+        >
           Reservar Cita
-        </button>
+        </a>
       </div>
     </div>
   </nav>
 </header>
 
 <script>
-  const toggleButton = document.getElementById('mobile-menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  
-  toggleButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+  const toggleButton = document.getElementById("mobile-menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.querySelector(".menu-icon");
+
+  // Asegurarnos que el menú está oculto inicialmente
+  if (mobileMenu) {
+    mobileMenu.classList.add("hidden");
+  }
+
+  toggleButton?.addEventListener("click", () => {
+    // Primero removemos/agregamos hidden para controlar la visibilidad
+    mobileMenu?.classList.toggle("hidden");
+
+    // Después de un pequeño delay, agregamos/removemos la clase open
+    // para permitir que la animación funcione
+    setTimeout(() => {
+      if (!mobileMenu?.classList.contains("hidden")) {
+        mobileMenu?.classList.add("open");
+        menuIcon?.classList.add("open");
+      } else {
+        mobileMenu?.classList.remove("open");
+        menuIcon?.classList.remove("open");
+      }
+    }, 10);
   });
 </script>
