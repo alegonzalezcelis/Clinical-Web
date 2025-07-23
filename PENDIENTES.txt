@@ -2,4 +2,4 @@
 
 * Cambiar librería de iconos
 
-* 
+* Hacer mejoras de rendimiento
