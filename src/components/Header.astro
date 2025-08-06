@@ -19,22 +19,22 @@
       <div class="hidden md:flex space-x-8">
         <a
           href="#inicio"
-          class="text-gray-700 hover:text-ColorAqua transition-colors"
+          class="nav-link text-gray-700 transition-all duration-300 relative"
           >Inicio</a
         >
         <a
           href="#servicios"
-          class="text-gray-700 hover:text-ColorAqua transition-colors"
+          class="nav-link text-gray-700 transition-all duration-300 relative"
           >Servicios</a
         >
         <a
           href="#nosotros"
-          class="text-gray-700 hover:text-ColorAqua transition-colors"
+          class="nav-link text-gray-700 transition-all duration-300 relative"
           >Nosotros</a
         >
         <a
           href="#contacto"
-          class="text-gray-700 hover:text-ColorAqua transition-colors"
+          class="nav-link text-gray-700 transition-all duration-300 relative"
           >Contacto</a
         >
       </div>
@@ -52,21 +52,265 @@
       </div>
 
       <!-- Botón menú móvil -->
-      <button class="md:hidden p-2">
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          ></path>
-        </svg>
+      <button
+        id="menuButton"
+        class="md:hidden p-2 relative w-8 h-8 flex items-center justify-center"
+      >
+        <div class="hamburger-icon">
+          <span class="hamburger-line top"></span>
+          <span class="hamburger-line middle"></span>
+          <span class="hamburger-line bottom"></span>
+        </div>
       </button>
     </div>
   </div>
+
+  <!-- Menú móvil -->
+  <div
+    id="mobileMenu"
+    class="md:hidden mobile-menu"
+  >
+    <div class="container mx-auto px-10 py-6">
+      <div class="flex flex-col space-y-2">
+        <a
+          href="#inicio"
+          class="mobile-nav-link text-gray-700 py-3 px-4 rounded-lg transition-colors"
+          >Inicio</a
+        >
+        <a
+          href="#servicios"
+          class="mobile-nav-link text-gray-700 py-3 px-4 rounded-lg transition-colors"
+          >Servicios</a
+        >
+        <a
+          href="#nosotros"
+          class="mobile-nav-link text-gray-700 py-3 px-4 rounded-lg transition-colors"
+          >Nosotros</a
+        >
+        <a
+          href="#contacto"
+          class="mobile-nav-link text-gray-700 py-3 px-4 rounded-lg transition-colors"
+          >Contacto</a
+        >
+        <a
+          href="https://agendapro.com/mp/cl/entrenamiento-melipilla"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-ColorAqua text-white px-6 py-3 rounded-full hover:bg-ColorAquaHover transition-colors text-center mt-4"
+        >
+          Reservar Cita
+        </a>
+      </div>
+    </div>
+  </div>
 </header>
+
+<style>
+  /* SOLUCIÓN AL PROBLEMA DEL HEADER */
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+
+  /* Estilos del menú móvil */
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Estilos para enlaces desktop - estilo nanamia.cl */
+  .nav-link {
+    position: relative;
+    padding: 8px 4px;
+    overflow: hidden;
+  }
+
+  .nav-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(78, 205, 196, 0.2),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  .nav-link:hover::before {
+    left: 100%;
+  }
+
+  .nav-link:hover {
+    color: #4ecdc4;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #4ecdc4;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Estado activo - solo subrayado */
+  .nav-link.active {
+    color: #4ecdc4;
+  }
+
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* Estilos para enlaces móviles - solo estado activo */
+  .mobile-nav-link {
+    position: relative;
+  }
+
+  .mobile-nav-link.active {
+    color: #4ecdc4;
+  }
+
+  .mobile-nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    right: 16px;
+    height: 2px;
+    background-color: #4ecdc4;
+  }
+
+  /* Estilos del icono hamburguesa */
+  .hamburger-icon {
+    width: 24px;
+    height: 18px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .hamburger-line {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #374151;
+    border-radius: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+  }
+
+  /* Animación a X */
+  .hamburger-icon.active .hamburger-line.top {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger-icon.active .hamburger-line.middle {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .hamburger-icon.active .hamburger-line.bottom {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+</style>
+
+<script>
+  const menuButton = document.querySelector("#menuButton");
+  const mobileMenu = document.querySelector("#mobileMenu");
+  const hamburgerIcon = document.querySelector(".hamburger-icon");
+  const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
+
+  menuButton?.addEventListener("click", () => {
+    const isOpen = mobileMenu?.classList.contains("open");
+
+    if (isOpen) {
+      // Cerrar menú
+      mobileMenu?.classList.remove("open");
+      hamburgerIcon?.classList.remove("active");
+    } else {
+      // Abrir menú
+      mobileMenu?.classList.add("open");
+      hamburgerIcon?.classList.add("active");
+    }
+  });
+
+  // Cerrar menú al hacer click en un enlace
+  const mobileMenuLinks = mobileMenu?.querySelectorAll("a");
+  mobileMenuLinks?.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.remove("open");
+      hamburgerIcon?.classList.remove("active");
+    });
+  });
+
+  // Cerrar menú al hacer click fuera de él
+  document.addEventListener("click", (e) => {
+    const target = e.target as Element;
+    if (!menuButton?.contains(target) && !mobileMenu?.contains(target)) {
+      mobileMenu?.classList.remove("open");
+      hamburgerIcon?.classList.remove("active");
+    }
+  });
+
+  // Función para marcar enlace activo basado en scroll
+  function setActiveLink() {
+    const sections = document.querySelectorAll("section[id]");
+    const scrollPosition = window.scrollY + 100;
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute("id");
+
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition < sectionTop + sectionHeight
+      ) {
+        // Remover clase active de todos los enlaces
+        navLinks.forEach((link) => link.classList.remove("active"));
+
+        // Agregar clase active al enlace correspondiente
+        const activeLinks = document.querySelectorAll(`[href="#${sectionId}"]`);
+        activeLinks.forEach((link) => {
+          if (
+            link.classList.contains("nav-link") ||
+            link.classList.contains("mobile-nav-link")
+          ) {
+            link.classList.add("active");
+          }
+        });
+      }
+    });
+  }
+
+  // Ejecutar al cargar y al hacer scroll
+  window.addEventListener("scroll", setActiveLink);
+  window.addEventListener("load", setActiveLink);
+</script>
