@@ -1,9 +1,15 @@
 @import "tailwindcss";
 
-@theme{
+@theme {
   --color-ColorTitle: #373737;
   --color-ColorAqua: #41B6C0;
   --color-ColorText: #606060;
   --color-ColorBackground: #eef8fd;
+  --color-ColorAquaHover: #359ca6;
   --font-poppins: Poppins, sans-serif;
+}
+
+/* Solo prevenir scroll horizontal sin interferir con otros estilos */
+html, body {
+  overflow-x: hidden;
 }

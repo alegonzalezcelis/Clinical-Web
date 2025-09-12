@@ -16,8 +16,18 @@ import "@fontsource/poppins/700.css";
 
 <style is:global>
   @import "../styles/global.css";
+
   body {
     font-family: "Poppins", sans-serif;
+  }
+
+  /* Prevenir scroll horizontal sin interferir con los estilos */
+  html {
+    overflow-x: hidden;
+  }
+  
+  body {
+    overflow-x: hidden;
   }
 </style>
 

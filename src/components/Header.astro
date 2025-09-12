@@ -98,7 +98,7 @@
           rel="noopener noreferrer"
           class="bg-ColorAqua text-white px-6 py-3 rounded-full hover:bg-ColorAquaHover transition-colors text-center mt-4"
         >
-          Reservar Cita
+          Agendar Cita
         </a>
       </div>
     </div>
@@ -285,6 +285,9 @@
     const scrollPosition = window.scrollY + 100;
 
     sections.forEach((section) => {
+      // Verificar que sea un HTMLElement para acceder a offsetTop y offsetHeight
+      if (!(section instanceof HTMLElement)) return;
+
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
       const sectionId = section.getAttribute("id");
