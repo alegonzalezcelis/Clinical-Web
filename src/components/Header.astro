@@ -2,8 +2,8 @@
 
 ---
 
-<header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
-  <div class="container mx-auto px-10 py-4 max-w-full">
+<header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50 h-25 flex">
+  <div class="container mx-auto my-auto px-10 py-4 max-w-full">
     <div class="flex items-center justify-between">
       <!-- Logo -->
       <div class="flex items-center space-x-2">
@@ -108,7 +108,12 @@
 <style>
   /* SOLUCIÓN AL PROBLEMA DEL HEADER */
   section[id] {
-    scroll-margin-top: 80px;
+    scroll-margin-top: 140px;
+  }
+
+  /* Alternativa más robusta para todos los elementos con ID */
+  *[id] {
+    scroll-margin-top: 140px;
   }
 
   /* Estilos del menú móvil */
@@ -282,7 +287,7 @@
   // Función para marcar enlace activo basado en scroll
   function setActiveLink() {
     const sections = document.querySelectorAll("section[id]");
-    const scrollPosition = window.scrollY + 100;
+    const scrollPosition = window.scrollY + 140;
 
     sections.forEach((section) => {
       // Verificar que sea un HTMLElement para acceder a offsetTop y offsetHeight

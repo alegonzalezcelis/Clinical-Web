@@ -12,6 +12,8 @@ import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
+
+import Header from "../components/Header.astro";
 ---
 
 <style is:global>
@@ -24,10 +26,22 @@ import "@fontsource/poppins/700.css";
   /* Prevenir scroll horizontal sin interferir con los estilos */
   html {
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
-  
+
   body {
     overflow-x: hidden;
+  }
+
+  /* Compensar la altura del header fijo */
+  main {
+    padding-top: 100px;
+  }
+
+  /* Asegurar que todas las secciones tengan scroll-margin adecuado */
+  section[id],
+  *[id] {
+    scroll-margin-top: 140px !important;
   }
 </style>
 
@@ -50,27 +64,76 @@ import "@fontsource/poppins/700.css";
     <title>{title}</title>
   </head>
   <body class="text-ColorText">
-    <main class="pt-18 pb-10">
+    <Header />
+    <main>
       <slot />
     </main>
     <script>
-      // Animaciones al hacer scroll
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+      // Sistema de animaciones scroll reveal mejorado
+      const createScrollReveal = () => {
+        // Opciones del observer
+        const observerOptions = {
+          threshold: 0.15,
+          rootMargin: "0px 0px -100px 0px",
+        };
+
+        // Crear observer principal
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const element = entry.target;
+
+              // Aplicar animación basada en la clase
+              if (element.classList.contains("scroll-fade-up")) {
+                element.classList.add("animate-fade-up");
+              } else if (element.classList.contains("scroll-fade-left")) {
+                element.classList.add("animate-fade-left");
+              } else if (element.classList.contains("scroll-fade-right")) {
+                element.classList.add("animate-fade-right");
+              } else if (element.classList.contains("scroll-scale")) {
+                element.classList.add("animate-scale");
+              } else if (element.classList.contains("scroll-slide-up")) {
+                element.classList.add("animate-slide-up");
+              } else {
+                // Animación por defecto
+                element.classList.add("animate-fade-up");
+              }
+
+              // Dejar de observar el elemento una vez animado
+              observer.unobserve(element);
+            }
+          });
+        }, observerOptions);
+
+        // Función para aplicar animaciones con delay escalonado
+        const observeElements = (selector, baseDelay = 0) => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach((el, index) => {
+            // Aplicar delay escalonado
+            el.style.animationDelay = `${baseDelay + index * 150}ms`;
+            observer.observe(el);
+          });
+        };
+
+        // Observar diferentes tipos de elementos
+        observeElements(".animate-on-scroll, .scroll-reveal");
+        observeElements(".scroll-fade-up");
+        observeElements(".scroll-fade-left");
+        observeElements(".scroll-fade-right");
+        observeElements(".scroll-scale");
+        observeElements(".scroll-slide-up");
+
+        // Animaciones especiales para cards y elementos en grid
+        observeElements(".service-card", 100);
+        observeElements(".benefit-item", 200);
       };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in-up");
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll(".animate-on-scroll").forEach((el) => {
-        observer.observe(el);
-      });
+      // Inicializar cuando el DOM esté listo
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", createScrollReveal);
+      } else {
+        createScrollReveal();
+      }
     </script>
   </body>
 </html>
@@ -80,10 +143,42 @@ import "@fontsource/poppins/700.css";
     font-family: "Inter", sans-serif;
   }
 
-  @keyframes fade-in-up {
+  /* Estados iniciales para elementos que se van a animar */
+  .animate-on-scroll,
+  .scroll-reveal,
+  .scroll-fade-up,
+  .scroll-fade-left,
+  .scroll-fade-right,
+  .scroll-scale,
+  .scroll-slide-up,
+  .service-card,
+  .benefit-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: none;
+  }
+
+  .scroll-fade-left {
+    transform: translateX(-40px);
+  }
+
+  .scroll-fade-right {
+    transform: translateX(40px);
+  }
+
+  .scroll-scale {
+    transform: scale(0.8);
+  }
+
+  .scroll-slide-up {
+    transform: translateY(60px);
+  }
+
+  /* Animaciones */
+  @keyframes fade-up {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
     }
     to {
       opacity: 1;
@@ -91,7 +186,105 @@ import "@fontsource/poppins/700.css";
     }
   }
 
+  @keyframes fade-left {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-right {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Clases de animación */
+  .animate-fade-up {
+    animation: fade-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .animate-fade-left {
+    animation: fade-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .animate-fade-right {
+    animation: fade-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .animate-scale {
+    animation: scale-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  /* Animación legacy para compatibilidad */
   .animate-fade-in-up {
-    animation: fade-in-up 0.6s ease-out forwards;
+    animation: fade-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  /* Animaciones especiales para hover */
+  .service-card:hover,
+  .benefit-item:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+  }
+
+  /* Animaciones más suaves en dispositivos móviles */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll,
+    .scroll-reveal,
+    .scroll-fade-up,
+    .scroll-fade-left,
+    .scroll-fade-right,
+    .scroll-scale,
+    .scroll-slide-up,
+    .service-card,
+    .benefit-item {
+      opacity: 1;
+      transform: none;
+    }
+
+    .animate-fade-up,
+    .animate-fade-left,
+    .animate-fade-right,
+    .animate-scale,
+    .animate-slide-up,
+    .animate-fade-in-up {
+      animation: none;
+    }
   }
 </style>

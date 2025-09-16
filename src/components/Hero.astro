@@ -7,19 +7,21 @@ import InfoContacto from "./InfoContacto.astro";
     class="relative mb-32 text-center md:text-left md:mb-0 bg-ColorBackground pt-10 pb-32"
 >
     <div
-        class="container mx-auto px-4 sm:px-6 md:px-10 md:grid md:grid-cols-2 md:gap-8 items-center animate-on-scroll"
+        class="container mx-auto px-4 sm:px-6 md:px-10 md:grid md:grid-cols-2 md:gap-8 items-center"
     >
-        <!-- Eliminar -->
-        <div class="">
-            <h1 class="text-3xl font-bold text-ColorTitle mb-4">
+        <!-- Contenido principal -->
+        <div class="scroll-fade-left">
+            <h1 class="text-3xl font-bold text-ColorTitle mb-4 scroll-fade-up">
                 Tu recuperación
                 <span
-                    class="text-4xl after:block after:content-[''] text-ColorAqua"
+                    class="text-4xl after:block after:content-[''] text-ColorAqua scroll-fade-up"
                     >nos importa</span
                 >
                 Kinesiología experta para moverte sin dolor.
             </h1>
-            <p class="text-ColorText text-lg text-left font-light">
+            <p
+                class="text-ColorText text-lg text-left font-light scroll-fade-up"
+            >
                 Centro de Kinesiología especializado en rehabilitación y terapia
                 física. Recupera tu movilidad y mejora tu calidad de vida con
                 tratamientos personalizados y efectivos.
@@ -30,18 +32,20 @@ import InfoContacto from "./InfoContacto.astro";
                 >
                 </div>
             </div>
-            <div class="flex justify-center gap-x-6 md:gap-x-14 my-5">
-                <div class="text-center md:text-left">
+            <div
+                class="flex justify-center gap-x-6 md:gap-x-14 my-5 scroll-fade-up"
+            >
+                <div class="text-center md:text-left scroll-scale">
                     <h3 class="text-ColorAqua font-semibold text-xl">
                         +30.000
                     </h3>
                     <p class="font-light text-sm">Sesiones realizadas</p>
                 </div>
-                <div class="text-center md:text-left">
+                <div class="text-center md:text-left scroll-scale">
                     <h3 class="text-ColorAqua font-semibold text-xl">+500</h3>
                     <p class="font-light text-sm">Pacientes recuperados</p>
                 </div>
-                <div class="text-center md:text-left">
+                <div class="text-center md:text-left scroll-scale">
                     <h3 class="text-ColorAqua font-semibold text-xl">+10</h3>
                     <p class="font-light text-sm">Años de experiencia</p>
                 </div>
@@ -55,19 +59,19 @@ import InfoContacto from "./InfoContacto.astro";
 
             <!-- Botones Call to Action -->
             <div
-                class="flex flex-row justify-center md:justify-start mt-8 gap-4"
+                class="flex flex-row justify-center md:justify-start mt-8 gap-4 scroll-fade-up"
             >
                 <a
                     href="https://agendapro.com/mp/cl/entrenamiento-melipilla"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-block bg-ColorAqua text-white px-6 py-3 rounded-full hover:bg-transparent hover:border-2 hover:border-ColorAqua hover:text-ColorAqua transition-all text-center min-w-[140px] content-center"
+                    class="inline-block bg-ColorAqua text-white px-6 py-3 rounded-full hover:bg-transparent hover:border-2 hover:border-ColorAqua hover:text-ColorAqua transition-all text-center min-w-[140px] content-center scroll-scale"
                 >
                     Agendar Cita
                 </a>
                 <a
                     href="#contacto"
-                    class="inline-block border-2 border-ColorAqua text-ColorAqua px-6 py-3 rounded-full hover:bg-ColorAqua hover:text-white transition-all text-center min-w-[140px]"
+                    class="inline-block border-2 border-ColorAqua text-ColorAqua px-6 py-3 rounded-full hover:bg-ColorAqua hover:text-white transition-all text-center min-w-[140px] scroll-scale"
                 >
                     Contactar
                 </a>
@@ -75,7 +79,7 @@ import InfoContacto from "./InfoContacto.astro";
         </div>
 
         <!-- Imagen Hero -->
-        <div class="hidden md:block animate-on-scroll">
+        <div class="hidden md:block scroll-fade-right">
             <img
                 src="/images/hero-kinesiologia.jpg"
                 alt="Clínica de kinesiología moderna con equipamiento especializado"
