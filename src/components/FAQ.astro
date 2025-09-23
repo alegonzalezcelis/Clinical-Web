@@ -1,0 +1,639 @@
+---
+// Sección FAQ con acordeón interactivo inspirado en el diseño de Behance
+// Responde preguntas comunes para reducir fricción en las reservas
+---
+
+<section
+    id="faq"
+    class="py-16 mb-16 bg-ColorBackground"
+>
+    <div class="container mx-auto px-4 sm:px-6 md:px-10">
+        <!-- Header de la sección -->
+        <div class="text-center mb-12 scroll-fade-up">
+            <span class="text-ColorAqua text-lg font-medium scroll-fade-up">
+                Preguntas Frecuentes
+            </span>
+            <h2 class="text-3xl font-bold text-ColorTitle mt-2 scroll-fade-up">
+                Respuestas a Tus Dudas Más Comunes
+            </h2>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto scroll-fade-up">
+                Hemos recopilado las preguntas más frecuentes de nuestros
+                pacientes para ayudarte a tomar la mejor decisión sobre tu
+                tratamiento.
+            </p>
+        </div>
+
+        <!-- Grid con FAQ -->
+        <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 gap-6">
+                <!-- FAQ 1 -->
+                <div
+                    class="bg-white rounded-2xl shadow-lg overflow-hidden service-card faq-item"
+                >
+                    <button
+                        class="w-full text-left p-6 focus:outline-none faq-trigger"
+                        data-faq="1"
+                    >
+                        <div class="flex justify-between items-center">
+                            <h3
+                                class="text-lg font-semibold text-ColorTitle pr-4"
+                            >
+                                ¿Cuánto tiempo dura un tratamiento completo?
+                            </h3>
+                            <div class="flex-shrink-0">
+                                <svg
+                                    class="w-6 h-6 text-ColorAqua transform transition-transform duration-300 faq-icon"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </button>
+                    <div
+                        class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out"
+                    >
+                        <div class="p-6 pt-0 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                La duración del tratamiento varía según el tipo
+                                de lesión y las necesidades individuales. En
+                                promedio, nuestros pacientes ven mejoras
+                                significativas entre 6-12 semanas. Lesiones
+                                agudas pueden requerir 4-8 semanas, mientras que
+                                condiciones crónicas pueden necesitar 12-16
+                                semanas para una recuperación completa.
+                            </p>
+                            <div class="mt-4 p-4 bg-ColorAqua/5 rounded-lg">
+                                <p class="text-sm text-ColorAqua font-medium">
+                                    📅 Evaluamos tu progreso cada 3-4 sesiones
+                                    para ajustar el plan de tratamiento.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div
+                    class="bg-white rounded-2xl shadow-lg overflow-hidden service-card faq-item"
+                >
+                    <button
+                        class="w-full text-left p-6 focus:outline-none faq-trigger"
+                        data-faq="2"
+                    >
+                        <div class="flex justify-between items-center">
+                            <h3
+                                class="text-lg font-semibold text-ColorTitle pr-4"
+                            >
+                                ¿Qué debo traer a mi primera consulta?
+                            </h3>
+                            <div class="flex-shrink-0">
+                                <svg
+                                    class="w-6 h-6 text-ColorAqua transform transition-transform duration-300 faq-icon"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </button>
+                    <div
+                        class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out"
+                    >
+                        <div class="p-6 pt-0 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed mb-4">
+                                Para tu primera consulta, es recomendable que
+                                traigas:
+                            </p>
+                            <ul class="text-gray-600 space-y-2">
+                                <li class="flex items-start">
+                                    <svg
+                                        class="w-5 h-5 text-ColorAqua mt-0.5 mr-3 flex-shrink-0"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M5 13l4 4L19 7"
+                                        ></path>
+                                    </svg>
+                                    Documentos médicos relevantes (radiografías,
+                                    resonancias, informes médicos)
+                                </li>
+                                <li class="flex items-start">
+                                    <svg
+                                        class="w-5 h-5 text-ColorAqua mt-0.5 mr-3 flex-shrink-0"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M5 13l4 4L19 7"
+                                        ></path>
+                                    </svg>
+                                    Lista de medicamentos actuales
+                                </li>
+                                <li class="flex items-start">
+                                    <svg
+                                        class="w-5 h-5 text-ColorAqua mt-0.5 mr-3 flex-shrink-0"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M5 13l4 4L19 7"
+                                        ></path>
+                                    </svg>
+                                    Ropa cómoda para el examen físico
+                                </li>
+                                <li class="flex items-start">
+                                    <svg
+                                        class="w-5 h-5 text-ColorAqua mt-0.5 mr-3 flex-shrink-0"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M5 13l4 4L19 7"
+                                        ></path>
+                                    </svg>
+                                    Seguro médico o forma de pago
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div
+                    class="bg-white rounded-2xl shadow-lg overflow-hidden service-card faq-item"
+                >
+                    <button
+                        class="w-full text-left p-6 focus:outline-none faq-trigger"
+                        data-faq="3"
+                    >
+                        <div class="flex justify-between items-center">
+                            <h3
+                                class="text-lg font-semibold text-ColorTitle pr-4"
+                            >
+                                ¿Cuáles son los costos y formas de pago?
+                            </h3>
+                            <div class="flex-shrink-0">
+                                <svg
+                                    class="w-6 h-6 text-ColorAqua transform transition-transform duration-300 faq-icon"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </button>
+                    <div
+                        class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out"
+                    >
+                        <div class="p-6 pt-0 border-t border-gray-100">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4
+                                        class="font-semibold text-ColorTitle mb-3"
+                                    >
+                                        Precios por Sesión:
+                                    </h4>
+                                    <ul class="text-gray-600 space-y-2">
+                                        <li class="flex justify-between">
+                                            <span>Evaluación inicial:</span>
+                                            <span class="font-medium"
+                                                >$45.000</span
+                                            >
+                                        </li>
+                                        <li class="flex justify-between">
+                                            <span>Sesión individual:</span>
+                                            <span class="font-medium"
+                                                >$35.000</span
+                                            >
+                                        </li>
+                                        <li class="flex justify-between">
+                                            <span>Paquete 8 sesiones:</span>
+                                            <span class="font-medium"
+                                                >$260.000</span
+                                            >
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4
+                                        class="font-semibold text-ColorTitle mb-3"
+                                    >
+                                        Formas de Pago:
+                                    </h4>
+                                    <ul class="text-gray-600 space-y-2">
+                                        <li class="flex items-center">
+                                            <svg
+                                                class="w-4 h-4 text-ColorAqua mr-2"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4z"
+                                                ></path>
+                                            </svg>
+                                            Efectivo
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg
+                                                class="w-4 h-4 text-ColorAqua mr-2"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4z"
+                                                ></path>
+                                            </svg>
+                                            Tarjetas de débito/crédito
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg
+                                                class="w-4 h-4 text-ColorAqua mr-2"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4z"
+                                                ></path>
+                                            </svg>
+                                            Transferencia bancaria
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-green-50 rounded-lg">
+                                <p class="text-sm text-green-600 font-medium">
+                                    💰 Descuento del 10% en paquetes de 8 o más
+                                    sesiones
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div
+                    class="bg-white rounded-2xl shadow-lg overflow-hidden service-card faq-item"
+                >
+                    <button
+                        class="w-full text-left p-6 focus:outline-none faq-trigger"
+                        data-faq="4"
+                    >
+                        <div class="flex justify-between items-center">
+                            <h3
+                                class="text-lg font-semibold text-ColorTitle pr-4"
+                            >
+                                ¿Las sesiones son dolorosas?
+                            </h3>
+                            <div class="flex-shrink-0">
+                                <svg
+                                    class="w-6 h-6 text-ColorAqua transform transition-transform duration-300 faq-icon"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </button>
+                    <div
+                        class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out"
+                    >
+                        <div class="p-6 pt-0 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                Nuestro enfoque se basa en tratamientos
+                                progresivos y adaptados a tu tolerancia. Aunque
+                                puedes experimentar cierta molestia durante
+                                algunos ejercicios terapéuticos, nunca
+                                trabajamos en rangos de dolor intenso. Nuestros
+                                profesionales monitorean constantemente tu
+                                respuesta y ajustan la intensidad según sea
+                                necesario.
+                            </p>
+                            <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                                <p class="text-sm text-blue-600 font-medium">
+                                    🤝 Comunicación constante: Siempre puedes
+                                    expresar tu nivel de comodidad durante el
+                                    tratamiento.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div
+                    class="bg-white rounded-2xl shadow-lg overflow-hidden service-card faq-item"
+                >
+                    <button
+                        class="w-full text-left p-6 focus:outline-none faq-trigger"
+                        data-faq="5"
+                    >
+                        <div class="flex justify-between items-center">
+                            <h3
+                                class="text-lg font-semibold text-ColorTitle pr-4"
+                            >
+                                ¿Qué pasa si no puedo asistir a una cita?
+                            </h3>
+                            <div class="flex-shrink-0">
+                                <svg
+                                    class="w-6 h-6 text-ColorAqua transform transition-transform duration-300 faq-icon"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </button>
+                    <div
+                        class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out"
+                    >
+                        <div class="p-6 pt-0 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed mb-4">
+                                Entendemos que pueden surgir imprevistos.
+                                Nuestra política de cancelación es flexible:
+                            </p>
+                            <ul class="text-gray-600 space-y-3">
+                                <li class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0"
+                                    >
+                                        <span
+                                            class="text-green-600 text-xs font-bold"
+                                            >✓</span
+                                        >
+                                    </div>
+                                    <div>
+                                        <strong class="text-green-600"
+                                            >24 horas o más de anticipación:</strong
+                                        >
+                                        Reagenda sin costo
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0"
+                                    >
+                                        <span
+                                            class="text-yellow-600 text-xs font-bold"
+                                            >!</span
+                                        >
+                                    </div>
+                                    <div>
+                                        <strong class="text-yellow-600"
+                                            >12-24 horas:</strong
+                                        >
+                                        Cargo del 50% de la sesión
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0"
+                                    >
+                                        <span
+                                            class="text-red-600 text-xs font-bold"
+                                            >×</span
+                                        >
+                                    </div>
+                                    <div>
+                                        <strong class="text-red-600"
+                                            >Menos de 12 horas:</strong
+                                        >
+                                        Cargo completo de la sesión
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div
+                    class="bg-white rounded-2xl shadow-lg overflow-hidden service-card faq-item"
+                >
+                    <button
+                        class="w-full text-left p-6 focus:outline-none faq-trigger"
+                        data-faq="6"
+                    >
+                        <div class="flex justify-between items-center">
+                            <h3
+                                class="text-lg font-semibold text-ColorTitle pr-4"
+                            >
+                                ¿Atienden urgencias o solo con cita previa?
+                            </h3>
+                            <div class="flex-shrink-0">
+                                <svg
+                                    class="w-6 h-6 text-ColorAqua transform transition-transform duration-300 faq-icon"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </button>
+                    <div
+                        class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out"
+                    >
+                        <div class="p-6 pt-0 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed mb-4">
+                                Trabajamos principalmente con citas programadas
+                                para brindarte la mejor atención personalizada.
+                                Sin embargo, entendemos que pueden ocurrir
+                                lesiones agudas que requieren atención
+                                inmediata.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="p-4 bg-ColorAqua/5 rounded-lg">
+                                    <h4
+                                        class="font-semibold text-ColorAqua mb-2"
+                                    >
+                                        📅 Citas Programadas
+                                    </h4>
+                                    <p class="text-sm text-gray-600">
+                                        La mejor opción para recibir atención
+                                        completa y personalizada.
+                                    </p>
+                                </div>
+                                <div class="p-4 bg-red-50 rounded-lg">
+                                    <h4 class="font-semibold text-red-600 mb-2">
+                                        🚨 Urgencias
+                                    </h4>
+                                    <p class="text-sm text-gray-600">
+                                        Contáctanos por WhatsApp para evaluar
+                                        disponibilidad inmediata.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to action final -->
+        <div class="text-center mt-12 scroll-fade-up">
+            <div class="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+                <h3 class="text-xl font-bold text-ColorTitle mb-4">
+                    ¿Tienes más preguntas?
+                </h3>
+                <p class="text-gray-600 mb-6">
+                    No dudes en contactarnos. Nuestro equipo estará encantado de
+                    resolver todas tus dudas y ayudarte a comenzar tu camino
+                    hacia la recuperación.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a
+                        href="https://wa.me/56912345678"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-block bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600 transition-all font-medium scroll-scale"
+                    >
+                        💬 WhatsApp
+                    </a>
+                    <a
+                        href="#contacto"
+                        class="inline-block border-2 border-ColorAqua text-ColorAqua px-6 py-3 rounded-full hover:bg-ColorAqua hover:text-white transition-all font-medium scroll-scale"
+                    >
+                        📞 Llamar Ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    // Funcionalidad del acordeón FAQ
+    document.addEventListener("DOMContentLoaded", function () {
+        const faqTriggers = document.querySelectorAll(".faq-trigger");
+
+        faqTriggers.forEach(function (trigger) {
+            trigger.addEventListener("click", function (e) {
+                const button = e.currentTarget;
+                const faqItem = button.closest(".faq-item");
+
+                if (!faqItem) return;
+
+                const content = faqItem.querySelector(".faq-content");
+                const icon = faqItem.querySelector(".faq-icon");
+
+                // Cerrar otros FAQs abiertos
+                faqTriggers.forEach(function (otherTrigger) {
+                    if (otherTrigger !== trigger) {
+                        const otherItem = otherTrigger.closest(".faq-item");
+                        if (otherItem) {
+                            const otherContent =
+                                otherItem.querySelector(".faq-content");
+                            const otherIcon =
+                                otherItem.querySelector(".faq-icon");
+
+                            if (otherContent)
+                                otherContent.style.maxHeight = "0";
+                            if (otherIcon)
+                                otherIcon.style.transform = "rotate(0deg)";
+                            otherItem.classList.remove("faq-active");
+                        }
+                    }
+                });
+
+                // Toggle del FAQ actual
+                if (content && icon) {
+                    if (
+                        content.style.maxHeight === "0px" ||
+                        !content.style.maxHeight
+                    ) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.style.transform = "rotate(180deg)";
+                        faqItem.classList.add("faq-active");
+                    } else {
+                        content.style.maxHeight = "0";
+                        icon.style.transform = "rotate(0deg)";
+                        faqItem.classList.remove("faq-active");
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    .faq-active {
+        ring-width: 2px;
+        ring-color: rgb(65 182 192 / 0.2);
+    }
+
+    .faq-content {
+        transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-icon {
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-trigger:hover {
+        background-color: rgb(249 250 251 / 0.5);
+    }
+
+    .faq-trigger:focus {
+        ring-width: 2px;
+        ring-color: rgb(65 182 192 / 0.2);
+    }
+</style>
