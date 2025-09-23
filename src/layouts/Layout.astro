@@ -69,70 +69,211 @@ import Header from "../components/Header.astro";
       <slot />
     </main>
     <script>
-      // Sistema de animaciones scroll reveal mejorado
-      const createScrollReveal = () => {
-        // Opciones del observer
+      // Sistema de animaciones elegantes estilo ReactBits.dev
+      const createModernScrollReveal = () => {
+        // Configuración de animaciones más sofisticada
+        const animationConfig = {
+          "scroll-fade-up": {
+            animation: "modern-fade-up",
+            delay: 0,
+            duration: "1.2s",
+          },
+          "scroll-fade-left": {
+            animation: "modern-slide-left",
+            delay: 100,
+            duration: "1s",
+          },
+          "scroll-fade-right": {
+            animation: "modern-slide-right",
+            delay: 100,
+            duration: "1s",
+          },
+          "scroll-scale": {
+            animation: "modern-scale",
+            delay: 200,
+            duration: "0.8s",
+          },
+          "scroll-slide-up": {
+            animation: "modern-slide-up",
+            delay: 0,
+            duration: "1.4s",
+          },
+          "animate-on-scroll": {
+            animation: "modern-fade-up",
+            delay: 0,
+            duration: "1.2s",
+          },
+          "scroll-reveal": {
+            animation: "modern-fade-up",
+            delay: 0,
+            duration: "1.2s",
+          },
+        };
+
+        // Observer con configuración más precisa
         const observerOptions = {
           threshold: 0.15,
           rootMargin: "0px 0px -100px 0px",
         };
 
-        // Crear observer principal
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const element = entry.target;
 
-              // Aplicar animación basada en la clase
-              if (element.classList.contains("scroll-fade-up")) {
-                element.classList.add("animate-fade-up");
-              } else if (element.classList.contains("scroll-fade-left")) {
-                element.classList.add("animate-fade-left");
-              } else if (element.classList.contains("scroll-fade-right")) {
-                element.classList.add("animate-fade-right");
-              } else if (element.classList.contains("scroll-scale")) {
-                element.classList.add("animate-scale");
-              } else if (element.classList.contains("scroll-slide-up")) {
-                element.classList.add("animate-slide-up");
-              } else {
-                // Animación por defecto
-                element.classList.add("animate-fade-up");
+              // Encontrar configuración de animación
+              let config = null;
+              for (const [className, animConfig] of Object.entries(
+                animationConfig,
+              )) {
+                if (element.classList.contains(className)) {
+                  config = animConfig;
+                  break;
+                }
               }
 
-              // Dejar de observar el elemento una vez animado
+              if (config) {
+                // Aplicar animación con timing moderno
+                setTimeout(() => {
+                  element.style.animationDuration = config.duration;
+                  element.classList.add(
+                    `animate-${config.animation.replace("modern-", "")}`,
+                  );
+                  element.classList.add("is-visible");
+                }, config.delay);
+              }
+
               observer.unobserve(element);
             }
           });
         }, observerOptions);
 
-        // Función para aplicar animaciones con delay escalonado
-        const observeElements = (selector, baseDelay = 0) => {
-          const elements = document.querySelectorAll(selector);
-          elements.forEach((el, index) => {
-            // Aplicar delay escalonado
-            el.style.animationDelay = `${baseDelay + index * 150}ms`;
+        // Función para configurar elementos con delays escalonados más sutiles
+        const setupAnimatedElements = () => {
+          // Elementos principales
+          document
+            .querySelectorAll('[class*="scroll-"]')
+            .forEach((el, index) => {
+              observer.observe(el);
+            });
+
+          // Cards con delays escalonados más elegantes
+          document.querySelectorAll(".service-card").forEach((el, index) => {
+            el.style.transitionDelay = `${index * 120}ms`;
+            observer.observe(el);
+          });
+
+          // Items de beneficios con timing perfecto
+          document.querySelectorAll(".benefit-item").forEach((el, index) => {
+            el.style.transitionDelay = `${index * 80}ms`;
             observer.observe(el);
           });
         };
 
-        // Observar diferentes tipos de elementos
-        observeElements(".animate-on-scroll, .scroll-reveal");
-        observeElements(".scroll-fade-up");
-        observeElements(".scroll-fade-left");
-        observeElements(".scroll-fade-right");
-        observeElements(".scroll-scale");
-        observeElements(".scroll-slide-up");
-
-        // Animaciones especiales para cards y elementos en grid
-        observeElements(".service-card", 100);
-        observeElements(".benefit-item", 200);
+        // Inicializar
+        setupAnimatedElements();
+        setupCounterAnimations();
+        console.log("🎨 Modern Scroll Reveal Active");
       };
 
-      // Inicializar cuando el DOM esté listo
+      // Sistema de conteo animado estilo ReactBits.dev
+      const setupCounterAnimations = () => {
+        const counterElements = document.querySelectorAll(".counter-number");
+
+        const animateCounter = (
+          element,
+          finalValue,
+          duration = 2000,
+          prefix = "",
+          suffix = "",
+        ) => {
+          const startValue = 0;
+          const startTime = performance.now();
+
+          // Configurar el elemento
+          element.classList.add("counting");
+
+          const updateCounter = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Función de easing suave para el conteo
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+            const currentValue = Math.floor(
+              startValue + (finalValue - startValue) * easedProgress,
+            );
+
+            // Formatear el número
+            let displayValue = currentValue.toLocaleString();
+            element.textContent = prefix + displayValue + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              // Animación completada
+              element.textContent =
+                prefix + finalValue.toLocaleString() + suffix;
+              element.classList.remove("counting");
+            }
+          };
+
+          requestAnimationFrame(updateCounter);
+        };
+
+        // Observer para las estadísticas
+        const counterObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const element = entry.target;
+                const text = element.textContent || element.innerText;
+
+                // Extraer información del número
+                let finalValue,
+                  prefix = "",
+                  suffix = "";
+
+                if (text.includes("30.000") || text.includes("30000")) {
+                  finalValue = 30000;
+                  prefix = "+";
+                } else if (text.includes("500")) {
+                  finalValue = 500;
+                  prefix = "+";
+                } else if (text.includes("10")) {
+                  finalValue = 10;
+                  prefix = "+";
+                }
+
+                if (finalValue) {
+                  // Delay escalonado para las estadísticas
+                  const delay =
+                    Array.from(counterElements).indexOf(element) * 200;
+                  setTimeout(() => {
+                    animateCounter(element, finalValue, 1800, prefix, suffix);
+                  }, delay);
+                }
+
+                counterObserver.unobserve(element);
+              }
+            });
+          },
+          {
+            threshold: 0.5,
+            rootMargin: "0px 0px -100px 0px",
+          },
+        );
+
+        // Observar todos los elementos counter
+        counterElements.forEach((el) => {
+          counterObserver.observe(el);
+        });
+      };
+
+      // Inicialización mejorada
       if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", createScrollReveal);
+        document.addEventListener("DOMContentLoaded", createModernScrollReveal);
       } else {
-        createScrollReveal();
+        createModernScrollReveal();
       }
     </script>
   </body>
@@ -143,7 +284,7 @@ import Header from "../components/Header.astro";
     font-family: "Inter", sans-serif;
   }
 
-  /* Estados iniciales para elementos que se van a animar */
+  /* Estados iniciales - Estilo ReactBits más sutil */
   .animate-on-scroll,
   .scroll-reveal,
   .scroll-fade-up,
@@ -154,117 +295,218 @@ import Header from "../components/Header.astro";
   .service-card,
   .benefit-item {
     opacity: 0;
-    transform: translateY(40px);
-    transition: none;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
   }
 
   .scroll-fade-left {
-    transform: translateX(-40px);
+    opacity: 0;
+    transform: translateX(-30px);
   }
 
   .scroll-fade-right {
-    transform: translateX(40px);
+    opacity: 0;
+    transform: translateX(30px);
   }
 
   .scroll-scale {
-    transform: scale(0.8);
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
   }
 
   .scroll-slide-up {
-    transform: translateY(60px);
+    opacity: 0;
+    transform: translateY(40px);
   }
 
-  /* Animaciones */
-  @keyframes fade-up {
-    from {
+  /* Animaciones modernas estilo ReactBits */
+  @keyframes modern-fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes modern-slide-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes modern-slide-right {
+    0% {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes modern-scale {
+    0% {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes modern-slide-up {
+    0% {
       opacity: 0;
       transform: translateY(40px);
     }
-    to {
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animaciones legacy actualizadas */
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
       opacity: 1;
       transform: translateY(0);
     }
   }
 
   @keyframes fade-left {
-    from {
+    0% {
       opacity: 0;
-      transform: translateX(-40px);
+      transform: translateX(-30px);
     }
-    to {
+    100% {
       opacity: 1;
       transform: translateX(0);
     }
   }
 
   @keyframes fade-right {
-    from {
+    0% {
       opacity: 0;
-      transform: translateX(40px);
+      transform: translateX(30px);
     }
-    to {
+    100% {
       opacity: 1;
       transform: translateX(0);
     }
   }
 
   @keyframes scale-in {
-    from {
+    0% {
       opacity: 0;
-      transform: scale(0.8);
+      transform: scale(0.95) translateY(10px);
     }
-    to {
+    100% {
       opacity: 1;
-      transform: scale(1);
+      transform: scale(1) translateY(0);
     }
   }
 
   @keyframes slide-up {
-    from {
+    0% {
       opacity: 0;
-      transform: translateY(60px);
+      transform: translateY(40px);
     }
-    to {
+    100% {
       opacity: 1;
       transform: translateY(0);
     }
   }
 
-  /* Clases de animación */
+  /* Estado visible - Transición elegante */
+  .is-visible,
+  .animate-fade-up,
+  .animate-fade-left,
+  .animate-fade-right,
+  .animate-scale,
+  .animate-slide-up {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Clases de animación específicas */
   .animate-fade-up {
-    animation: fade-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: modern-fade-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-fade-left {
-    animation: fade-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: modern-slide-left 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-fade-right {
-    animation: fade-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: modern-slide-right 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-scale {
-    animation: scale-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation: modern-scale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-slide-up {
-    animation: slide-up 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: modern-slide-up 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  /* Animación legacy para compatibilidad */
+  /* Legacy support */
   .animate-fade-in-up {
-    animation: fade-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: modern-fade-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  /* Animaciones especiales para hover */
-  .service-card:hover,
+  /* Efectos hover elegantes estilo ReactBits */
+  .service-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center bottom;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .benefit-item {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   .benefit-item:hover {
-    transform: translateY(-5px);
-    transition: transform 0.3s ease;
+    transform: translateX(8px);
+    opacity: 0.9;
   }
 
-  /* Animaciones más suaves en dispositivos móviles */
+  /* Efectos adicionales para botones */
+  .scroll-scale:hover {
+    transform: scale(1.05);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Accesibilidad y responsive optimizado */
   @media (prefers-reduced-motion: reduce) {
+    /* Respeto total a las preferencias de accesibilidad */
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
     .animate-on-scroll,
     .scroll-reveal,
     .scroll-fade-up,
@@ -274,17 +516,160 @@ import Header from "../components/Header.astro";
     .scroll-slide-up,
     .service-card,
     .benefit-item {
-      opacity: 1;
-      transform: none;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  /* Optimización móvil - Animaciones más rápidas */
+  @media (max-width: 768px) {
+    .animate-fade-up,
+    .animate-fade-left,
+    .animate-fade-right,
+    .animate-scale,
+    .animate-slide-up {
+      animation-duration: 0.8s;
+      transition-duration: 0.8s;
     }
 
+    .service-card:hover {
+      transform: translateY(-4px) scale(1.01);
+    }
+  }
+
+  /* Performance para pantallas de alta resolución */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .animate-fade-up,
     .animate-fade-left,
     .animate-fade-right,
     .animate-scale,
     .animate-slide-up,
-    .animate-fade-in-up {
-      animation: none;
+    .service-card,
+    .benefit-item {
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      perspective: 1000px;
     }
   }
+
+  /* Mejoras para pantallas grandes */
+  @media (min-width: 1200px) {
+    .service-card:hover {
+      transform: translateY(-12px) scale(1.03);
+    }
+  }
+
+  /* Animación de conteo para estadísticas - Estilo ReactBits */
+  .counter-number {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .counter-number.counting {
+    color: #4ecdc4;
+    text-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+  }
+
+  /* Efecto de pulsación sutil durante el conteo */
+  @keyframes counter-pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .counter-number.counting {
+    animation: counter-pulse 0.6s ease-in-out;
+  }
+
+  /*
+  ═══════════════════════════════════════════════════════════════════════════════
+  ✨ SISTEMA DE ANIMACIONES MODERNAS - Estilo ReactBits.dev
+  ═══════════════════════════════════════════════════════════════════════════════
+  
+  � ANIMACIONES ELEGANTES DISPONIBLES:
+  
+  ▶️ APARICIÓN SUAVE:
+     .scroll-fade-up        → Fade elegante desde abajo (20px)
+     .scroll-slide-up       → Deslizamiento suave pronunciado (40px)
+  
+  ▶️ DESLIZAMIENTOS LATERALES:
+     .scroll-fade-left      → Aparición sutil desde la izquierda (30px)
+     .scroll-fade-right     → Aparición sutil desde la derecha (30px)
+  
+  ▶️ EFECTOS PREMIUM:
+     .scroll-scale          → Escalado elegante con desplazamiento (scale 0.95)
+     .animate-on-scroll     → Animación base moderna
+     .scroll-reveal         → Alias para revelar contenido
+  
+  ▶️ COMPONENTES ESPECIALIZADOS:
+     .service-card          → Cards con hover premium y delays de 120ms
+     .benefit-item          → Items con hover lateral y delays de 80ms
+  
+  🚀 IMPLEMENTACIÓN EN NUEVAS SECCIONES:
+  
+  1️⃣ HEADERS DE SECCIÓN:
+     <section>
+       <span class="scroll-fade-up">Etiqueta</span>
+       <h2 class="scroll-fade-up">Título Principal</h2>
+       <p class="scroll-fade-up">Descripción</p>
+     </section>
+  
+  2️⃣ LAYOUTS RESPONSIVOS:
+     <div class="md:grid md:grid-cols-2">
+       <div class="scroll-fade-left">Contenido principal</div>
+       <div class="scroll-fade-right">Imagen/Media</div>
+     </div>
+  
+  3️⃣ ELEMENTOS INTERACTIVOS:
+     <button class="scroll-scale">CTA Principal</button>
+     <div class="scroll-scale">Estadística Destacada</div>
+  
+  4️⃣ GRIDS Y LISTAS:
+     <div class="grid">
+       <div class="service-card">Servicio 1</div>
+       <div class="service-card">Servicio 2</div>
+       <!-- Delays automáticos: 0ms, 120ms -->
+     </div>
+  
+  ⚡ ESPECIFICACIONES TÉCNICAS:
+  • Curva de animación: cubic-bezier(0.16, 1, 0.3, 1) - Ultra suave
+  • Duración base: 1.2s para fade-up, 1s para laterales
+  • Threshold: 15% de visibilidad antes de activar
+  • Margin: 100px de anticipación
+  • Will-change y backface-visibility optimizados
+  
+  � EFECTOS HOVER PREMIUM:
+  • service-card: translateY(-8px) + scale(1.02) + sombra elegante
+  • benefit-item: translateX(8px) + fade sutil
+  • scroll-scale: scale(1.05) instantáneo
+  
+  🌟 CARACTERÍSTICAS AVANZADAS:
+  • Respeto total a prefers-reduced-motion
+  • Optimización automática para móviles (0.8s)
+  • Performance mejorada para pantallas Retina
+  • Animaciones más suaves en pantallas grandes
+  
+  🔢 CONTADORES ANIMADOS (NUEVO):
+  • Clase: .counter-number para números que se animan al contar
+  • Detección automática de valores: +30.000, +500, +10
+  • Duración: 1.8s con easing cúbico suave
+  • Delay escalonado: 200ms entre contadores
+  • Efecto visual: Color aqua + text-shadow + pulsación sutil
+  • Formato: Separadores de miles automáticos
+  
+  📊 USO DE CONTADORES:
+     <h3 class="counter-number">+30.000</h3>
+     <h3 class="counter-number">+500</h3>
+     <h3 class="counter-number">+10</h3>
+     <!-- Se animan automáticamente al entrar en viewport -->
+  
+  ═══════════════════════════════════════════════════════════════════════════════
+  */
 </style>
