@@ -7,5 +7,10 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+  site: 'https://alegonzalezcelis.github.io',
+  base: '/Clinical-Web',
 });
+
+
+
