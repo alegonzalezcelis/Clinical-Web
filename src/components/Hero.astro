@@ -1,5 +1,7 @@
 ---
 import InfoContacto from "./InfoContacto.astro";
+import { Image } from "astro:assets";
+import heroImage from "../images/hero-kinesiologia.jpg";
 ---
 
 <section
@@ -90,8 +92,8 @@ import InfoContacto from "./InfoContacto.astro";
 
         <!-- Imagen Hero -->
         <div class="hidden md:block scroll-fade-right">
-            <img
-                src="/images/hero-kinesiologia.jpg"
+            <Image
+                src={heroImage}
                 alt="Clínica de kinesiología moderna con equipamiento especializado"
                 class="w-full h-auto rounded-2xl shadow-lg object-cover"
                 style="aspect-ratio: 4/3;"
