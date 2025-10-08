@@ -9,6 +9,11 @@
   --font-poppins: Poppins, sans-serif;
 }
 
+/* Configuración del container para alineación consistente */
+.container {
+  max-width: 1200px;
+}
+
 /* Solo prevenir scroll horizontal sin interferir con otros estilos */
 html, body {
   overflow-x: hidden;
