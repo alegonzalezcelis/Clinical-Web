@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ColorTitle: #373737;
-  --color-ColorAqua: #41B6C0;
-  --color-ColorText: #606060;
+  --color-ColorTitle: #2d2d2d;
+  --color-ColorAqua: #3aa6b0;
+  --color-ColorText: #4a4a4a;
   --color-ColorBackground: #eef8fd;
-  --color-ColorAquaHover: #359ca6;
+  --color-ColorAquaHover: #2d8a94;
   --font-poppins: Poppins, sans-serif;
 }
 

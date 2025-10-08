@@ -33,6 +33,25 @@ import Header from "../components/Header.astro";
     overflow-x: hidden;
   }
 
+  /* Skip link para accesibilidad */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #2d2d2d;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 1000;
+    transition: top 0.3s;
+  }
+
+  .skip-link:focus {
+    top: 6px;
+  }
+
   /* Compensar la altura del header fijo */
   main {
     padding-top: 100px;
@@ -45,12 +64,24 @@ import Header from "../components/Header.astro";
   }
 </style>
 
-<html lang="es">
+<html lang="es-CL">
   <head>
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="Clínica de Kinesiología - Rehabilitación y terapia física especializada"
+      content="Clínica de Kinesiología KinesioVital - Rehabilitación y terapia física especializada en Chile. Tratamientos personalizados para deportistas y rehabilitación post-quirúrgica."
+    />
+    <meta
+      name="keywords"
+      content="kinesiología, rehabilitación, terapia física, fisioterapia, Chile, deportistas, lesiones, recuperación"
+    />
+    <meta
+      name="author"
+      content="KinesioVital"
+    />
+    <meta
+      name="robots"
+      content="index, follow"
     />
     <meta
       name="viewport"
@@ -61,11 +92,58 @@ import Header from "../components/Header.astro";
       type="image/svg+xml"
       href="/favicon.svg"
     />
+    <link
+      rel="canonical"
+      href="https://alegonzalezcelis.github.io/Clinical-Web/"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta
+      property="og:type"
+      content="website"
+    />
+    <meta
+      property="og:url"
+      content="https://alegonzalezcelis.github.io/Clinical-Web/"
+    />
+    <meta
+      property="og:title"
+      content="KinesioVital - Clínica de Kinesiología y Rehabilitación"
+    />
+    <meta
+      property="og:description"
+      content="Centro especializado en rehabilitación y terapia física. Tratamientos personalizados para tu recuperación."
+    />
+
+    <!-- Twitter -->
+    <meta
+      property="twitter:card"
+      content="summary_large_image"
+    />
+    <meta
+      property="twitter:url"
+      content="https://alegonzalezcelis.github.io/Clinical-Web/"
+    />
+    <meta
+      property="twitter:title"
+      content="KinesioVital - Clínica de Kinesiología y Rehabilitación"
+    />
+    <meta
+      property="twitter:description"
+      content="Centro especializado en rehabilitación y terapia física. Tratamientos personalizados para tu recuperación."
+    />
+
     <title>{title}</title>
   </head>
   <body class="text-ColorText">
+    <!-- Skip link para accesibilidad -->
+    <a
+      href="#main-content"
+      class="skip-link"
+      >Ir al contenido principal</a
+    >
     <Header />
-    <main>
+    <main id="main-content">
       <slot />
     </main>
     <script>
